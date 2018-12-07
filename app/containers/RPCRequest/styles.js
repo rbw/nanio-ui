@@ -1,0 +1,37 @@
+export const styles = () => ({
+  root: {
+    display: 'flex',
+    alignItems: 'flex-end',
+    flexDirection: 'column-reverse',
+    maxHeight: '45%',
+  },
+  editor: {
+    boxShadow: '2px 3px 15px rgba(0, 0, 0, 0.3)',
+    backgroundColor: '#2b2b2b',
+    borderWidth: 1,
+    borderRadius: 4,
+    borderStyle: 'solid',
+    borderColor: '#4f4f4f',
+  },
+  editorSendButton: {
+    flex: 1,
+    display: 'flex',
+    position: 'absolute',
+    border: '1px solid #4B4B4B',
+    borderRadius: 2,
+    backgroundColor: '#343434',
+    color: '#939790',
+    margin: -15,
+    zIndex: 2,
+    height: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 120,
+    '&:hover': {
+      backgroundColor: '#373737',
+      color: '#caa931',
+      cursor: 'pointer',
+      borderColor: '#585858',
+    },
+  },
+});
