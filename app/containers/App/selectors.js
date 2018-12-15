@@ -3,12 +3,15 @@ import { initialState } from './reducer';
 
 const selectGlobal = state => state.get('global', initialState);
 
-const configSelector = () =>
-  createSelector(selectGlobal, globalState => globalState.get('config'));
+const loadingSelector = () =>
+  createSelector(selectGlobal, globalState => globalState.get('loading'));
 
 const rpcSidebarSelector = () =>
   createSelector(selectGlobal, globalState =>
-    globalState.getIn(['config', 'rpc']).keySeq().toArray(),
+    globalState
+      .getIn(['config', 'rpc'])
+      .keySeq()
+      .toArray(),
   );
 
-export { selectGlobal, configSelector, rpcSidebarSelector };
+export { selectGlobal, loadingSelector, rpcSidebarSelector };

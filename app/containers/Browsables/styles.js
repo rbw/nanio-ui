@@ -39,6 +39,7 @@ export const styles = theme => ({
   },
   exampleLink: {
     padding: 0,
+    fontSize: 16,
     color: '#595dc5',
     cursor: 'pointer',
     textTransform: 'lowercase',

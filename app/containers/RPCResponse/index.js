@@ -24,7 +24,7 @@ export class RPCResponse extends React.PureComponent {
     return (
       <div className={classes.summary}>
         {errorIcon}
-        {` ${elapsed}ms, status: `}
+        {`${elapsed}ms, `}
         {error ? 'failure' : 'success'}
       </div>
     );
@@ -39,7 +39,7 @@ export class RPCResponse extends React.PureComponent {
     } = this.props;
 
     if (loading)
-      return <div className={classes.sending}>Awaiting response...</div>;
+      return <div className={classes.sending}>awaiting response...</div>;
 
     if (result.size > 0) {
       const res = result.toJS();

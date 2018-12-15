@@ -8,9 +8,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExampleIcon from '@material-ui/icons/FileCopy';
-import AccessIcon from '@material-ui/icons/Lock';
-import { payloadSet } from 'containers/RPCRequest/actions';
+import { requestSet } from 'containers/RPCRequest/actions';
 import { styles } from './styles';
 import FieldsTable from './fields';
 
@@ -19,14 +17,14 @@ class Browsables extends React.Component {
     expanded: null,
   };
 
-  clickPanel = (action, fields) => {
+  clickPanel = (action, fields, _protected) => {
     /* Convert array to object for serialization later */
     const payload = fields
       .filter(field => field.required)
       .reduce((map, { name }) => ({ ...map, [name]: '' }), {});
 
     payload.action = action;
-    this.props.setPayload(payload);
+    this.props.setRequest(payload, _protected);
   };
 
   handleChange = panel => (event, expanded) => {
@@ -52,7 +50,7 @@ class Browsables extends React.Component {
   };
 
   renderDetails = action => {
-    const { classes } = this.props;
+    const { classes, setRequest } = this.props;
     const { examples } = action;
 
     return (
@@ -71,10 +69,10 @@ class Browsables extends React.Component {
           </span>
           <span>
             <span
-              onClick={() => this.props.setPayload(examples.request)}
+              onClick={() => setRequest(examples.request, action.protected)}
               className={classes.exampleLink}
             >
-              show example
+              load example {`=>`}
             </span>
           </span>
         </div>
@@ -93,7 +91,9 @@ class Browsables extends React.Component {
       >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
-          onClick={() => this.clickPanel(action.action, action.fields)}
+          onClick={() =>
+            this.clickPanel(action.action, action.fields, action.protected)
+          }
         >
           <Typography className={classes.itemLeftHeading}>
             {action.name}
@@ -134,14 +134,14 @@ class Browsables extends React.Component {
 
 Browsables.propTypes = {
   classes: PropTypes.object.isRequired,
-  setPayload: PropTypes.func.isRequired,
+  setRequest: PropTypes.func.isRequired,
   actionGroups: PropTypes.object,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    setPayload: data => {
-      dispatch(payloadSet(data));
+    setRequest: (data, _protected) => {
+      dispatch(requestSet(data, _protected));
     },
   };
 }

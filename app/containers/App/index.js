@@ -12,18 +12,22 @@ import {
   createMuiTheme,
   withStyles,
 } from '@material-ui/core/styles';
+import { createStructuredSelector } from 'reselect';
 
 import Grid from '@material-ui/core/Grid';
+import { CircularProgress } from '@material-ui/core';
 
 import Browser from 'containers/Browser';
 import NotFoundPage from 'containers/NotFoundPage';
+import injectSaga from 'utils/injectSaga';
 
 import saga from 'containers/Backend/sagas';
 
 import Sidebar from '../Sidebar';
 import { styles } from './styles';
 import { uiConfig } from './actions';
-import injectSaga from '../../utils/injectSaga';
+import { loadingSelector } from './selectors';
+
 
 const theme = createMuiTheme({
   props: {
@@ -64,10 +68,22 @@ class Root extends React.PureComponent {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, loading } = this.props;
 
     return (
       <MuiThemeProvider theme={theme}>
+        <div
+          className={classes.loadingOverlay}
+          style={{ visibility: loading ? 'visible' : 'hidden' }}
+        >
+          <div className={classes.loadingWrapper}>
+            <CircularProgress
+              thickness={3}
+              style={{ width: 110, height: 110, color: '#90878d' }}
+            />
+            <div className={classes.loadingMessage}>[fetching config]</div>
+          </div>
+        </div>
         <Grid container className={classes.root} direction="row">
           <CssBaseline />
           <Grid item>
@@ -88,6 +104,7 @@ class Root extends React.PureComponent {
 
 Root.propTypes = {
   classes: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
   getUiConfig: PropTypes.func.isRequired,
 };
 
@@ -99,11 +116,15 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
+const mapStateToProps = createStructuredSelector({
+  loading: loadingSelector(),
+});
+
 export default compose(
   withStyles(styles),
   injectSaga({ key: 'backend_crud', saga }),
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
   ),
 )(Root);

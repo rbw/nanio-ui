@@ -10,6 +10,9 @@ export const responseSelector = () =>
     (result, time) => ({ result, elapsed: time.get('end') - time.get('begin') })
   );
 
+export const protectedSelector = () =>
+  createSelector(selectRPC, rpcState => rpcState.get('protected'));
+
 export const payloadSelector = () =>
   createSelector(selectRPC, rpcState => rpcState.get('payload'));
 

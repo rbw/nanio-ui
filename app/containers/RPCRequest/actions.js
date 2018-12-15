@@ -1,15 +1,16 @@
 import { create } from 'containers/Backend/actions';
 import {
-  PAYLOAD_SET,
+  REQUEST_SET,
   LOAD_REQUESTED,
   LOAD_RESOLVED,
-  LOAD_REJECTED
+  LOAD_REJECTED,
 } from './constants';
 
-export function payloadSet(data) {
+export function requestSet(data, _protected) {
   return {
-    type: PAYLOAD_SET,
+    type: REQUEST_SET,
     payload: data,
+    protected: _protected,
   };
 }
 

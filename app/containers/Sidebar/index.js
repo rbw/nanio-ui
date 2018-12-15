@@ -51,7 +51,7 @@ class Sidebar extends React.Component {
       >
         <ListItem button onClick={this.handleClick}>
           <ListItemText
-            primary="Node API"
+            primary="Node RPC"
             disableTypography
             className={classes.itemText}
           />

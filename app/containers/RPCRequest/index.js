@@ -8,8 +8,12 @@ import Button from '@material-ui/core/Button';
 import AceEditor from 'react-ace';
 import 'brace/mode/json';
 import 'brace/theme/pastel_on_dark';
-import { payloadSend, payloadSet } from './actions';
-import { loadingSelector, payloadSelector } from './selectors';
+import { payloadSend, requestSet } from './actions';
+import {
+  loadingSelector,
+  payloadSelector,
+  protectedSelector,
+} from './selectors';
 
 import { styles } from './styles';
 
@@ -55,7 +59,11 @@ class RPCRequest extends React.PureComponent {
   }
 
   render() {
-    const { classes, extra, loading } = this.props;
+    const { classes, extra, loading, isProtected } = this.props;
+
+    console.log(isProtected);
+
+    // const missingAuth = isProtected
 
     return (
       <div className={classes.root}>
@@ -96,6 +104,7 @@ RPCRequest.propTypes = {
   classes: PropTypes.object.isRequired,
   extra: PropTypes.object,
   payload: PropTypes.object.isRequired,
+  isProtected: PropTypes.bool,
   sendPayload: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
@@ -105,14 +114,15 @@ export function mapDispatchToProps(dispatch) {
     sendPayload: data => {
       dispatch(payloadSend(data));
     },
-    setPayload: data => {
-      dispatch(payloadSet(data));
+    setRequest: (data, _protected) => {
+      dispatch(requestSet(data, _protected));
     },
   };
 }
 
 const mapStateToProps = createStructuredSelector({
   payload: payloadSelector(),
+  isProtected: protectedSelector(),
   loading: loadingSelector(),
 });
 
