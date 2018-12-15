@@ -36,7 +36,7 @@ const theme = createMuiTheme({
     },
   },
   transitions: {
-    // create: () => 'none',
+    create: () => 'none',
   },
   typography: {
     fontFamily: ['Roboto'],
@@ -78,13 +78,19 @@ class Root extends React.PureComponent {
         >
           <div className={classes.loadingWrapper}>
             <CircularProgress
-              thickness={3}
+              disableShrink
+              thickness={1}
               style={{ width: 110, height: 110, color: '#90878d' }}
             />
-            <div className={classes.loadingMessage}>[fetching config]</div>
+            <div className={classes.loadingMessage}>fetching config</div>
           </div>
         </div>
-        <Grid container className={classes.root} direction="row">
+        <Grid
+          container
+          className={classes.root}
+          style={{ visibility: loading ? 'hidden' : 'visible' }}
+          direction="row"
+        >
           <CssBaseline />
           <Grid item>
             <Sidebar />

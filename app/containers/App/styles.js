@@ -28,10 +28,10 @@ export const styles = theme => ({
   },
   loadingMessage: {
     color: '#d0d0d0',
-    fontSize: 20,
+    fontSize: 18,
     zIndex: 2000,
     marginTop: 15,
     textAlign: 'center',
-    fontFamily: 'monospace',
+    fontFamily: 'Text Me One',
   },
 });
