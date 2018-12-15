@@ -13,7 +13,7 @@ export const styles = theme => ({
   },
   loadingOverlay: {
     position: 'absolute',
-    backgroundColor: 'rgba(0,0,0,0.75)',
+    backgroundColor: 'rgba(0,0,0,0.80)',
     zIndex: 2000,
     top: 0,
     left: 0,

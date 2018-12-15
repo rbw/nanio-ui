@@ -85,17 +85,16 @@ class Root extends React.PureComponent {
             <div className={classes.loadingMessage}>fetching config</div>
           </div>
         </div>
-        <Grid
-          container
-          className={classes.root}
-          style={{ visibility: loading ? 'hidden' : 'visible' }}
-          direction="row"
-        >
+        <Grid container className={classes.root} direction="row">
           <CssBaseline />
           <Grid item>
             <Sidebar />
           </Grid>
-          <Grid item className={classes.contentContainer}>
+          <Grid
+            item
+            className={classes.contentContainer}
+            style={{ visibility: loading ? 'hidden' : 'visible' }}
+          >
             <Switch>
               <Route exact path="/" component={Browser} />
               <Route exact path="/browser" component={Browser} />
