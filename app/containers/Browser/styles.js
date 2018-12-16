@@ -4,7 +4,7 @@ export const styles = theme => ({
     height: '100%',
   },
   rightPane: {
-    height: '100%',
+    height: '100vh',
     padding: 20,
     paddingTop: 15,
     paddingBottom: 0,
@@ -12,6 +12,7 @@ export const styles = theme => ({
     boxShadow: '-1px 0px 1px grey',
   },
   leftPane: {
+    height: '100vh',
   },
   rightPaneTitle: {
     height: 40,
@@ -27,12 +28,36 @@ export const styles = theme => ({
     borderWidth: '0 0 1px 0',
     borderStyle: 'solid',
   },
-  actionBarWrapper: {
-    height: 60,
-    padding: 20,
-    borderBottom: '1px dashed #D2D2D2',
+  actionWrapper: {
+    marginRight: 60,
+    width: '100%',
+    display: 'flex',
+    flexFlow: 'column',
   },
-  actionBar: {
-    background: '#FFFFFF',
+  actionContainer: {
+    boxShadow: '-1px 0px 1px grey',
+    borderRadius: 5,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    flex: 1,
+    zIndex: 2,
+    padding: 10,
+    position: 'fixed',
+    bottom: 0,
+    left: '30%',
+    width: 50,
+    background: 'red', // '#343434',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: '#b4b4b4',
+    borderTop: 0,
+  },
+  actionIcon: {
+    color: theme.palette.primary.contrastText,
+  },
+  formControl: {
+    marginLeft: 30,
+    backgroundColor: '#FFFFFF',
+    margin: theme.spacing.unit,
   },
 });

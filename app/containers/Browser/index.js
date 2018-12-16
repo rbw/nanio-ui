@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import APIKeyIcon from '@material-ui/icons/Lock';
 
 import Grid from '@material-ui/core/Grid';
 import Browsables from 'containers/Browsables';
@@ -19,32 +20,37 @@ export class Browser extends React.PureComponent {
     return (
       <Grid container direction="row" className={classes.root}>
         <Grid item lg={6} xs={7} className={classes.leftPane}>
-          <div className={classes.actionBarWrapper}>
-            <div className={classes.actionBar}>
-              Bajsa
-            </div>
-          </div>
-          <PerfectScrollbar style={{ height: 'calc(100% - 60px)' }}>
+          <PerfectScrollbar>
             <Browsables />
           </PerfectScrollbar>
+          <div className={classes.actionWrapper}>
+            <div className={classes.actionContainer}>
+              <APIKeyIcon className={classes.actionIcon} />
+            </div>
+          </div>
         </Grid>
-        <Grid item lg={6} xs={5}>
-          <Grid container direction="column" className={classes.rightPane}>
-            <Grid item style={{ height: '40%' }}>
-              <div className={classes.rightPaneTitle}>Payload</div>
-              <RPCRequest />
-            </Grid>
-            <Grid item style={{ height: 'calc(60% - 60px)' }}>
-              <div
-                className={classnames(
-                  classes.rightPaneTitle,
-                  classes.responseTitle,
-                )}
-              >
-                Response
-              </div>
-              <RPCResponse />
-            </Grid>
+        <Grid
+          container
+          item
+          lg={6}
+          xs={5}
+          direction="column"
+          className={classes.rightPane}
+        >
+          <Grid item style={{ height: '40%' }}>
+            <div className={classes.rightPaneTitle}>Payload</div>
+            <RPCRequest />
+          </Grid>
+          <Grid item style={{ height: 'calc(60% - 60px)' }}>
+            <div
+              className={classnames(
+                classes.rightPaneTitle,
+                classes.responseTitle,
+              )}
+            >
+              Response
+            </div>
+            <RPCResponse />
           </Grid>
         </Grid>
       </Grid>

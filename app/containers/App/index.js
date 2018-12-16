@@ -38,7 +38,7 @@ const theme = createMuiTheme({
     },
   },
   transitions: {
-    create: () => 'none',
+    // create: () => 'none',
   },
   typography: {
     fontFamily: ['Roboto'],
@@ -81,8 +81,8 @@ class Root extends React.PureComponent {
           <div className={classes.loadingWrapper}>
             <CircularProgress
               disableShrink
-              thickness={1}
-              style={{ width: 110, height: 110, color: '#90878d' }}
+              thickness={3}
+              style={{ width: 42, height: 42, color: '#90878d' }}
             />
             <div className={classes.loadingMessage}>fetching config</div>
           </div>

@@ -23,6 +23,8 @@ export const styles = () => ({
     backgroundColor: '#343434',
     color: '#939790',
     margin: -20,
+    marginBottom: 20,
+    marginRight: 20,
     zIndex: 2,
     height: 35,
     alignItems: 'center',
