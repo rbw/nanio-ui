@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import APIKeyIcon from '@material-ui/icons/Lock';
 
 import Grid from '@material-ui/core/Grid';
 import Browsables from 'containers/Browsables';
@@ -23,11 +22,6 @@ export class Browser extends React.PureComponent {
           <PerfectScrollbar>
             <Browsables />
           </PerfectScrollbar>
-          <div className={classes.actionWrapper}>
-            <div className={classes.actionContainer}>
-              <APIKeyIcon className={classes.actionIcon} />
-            </div>
-          </div>
         </Grid>
         <Grid
           container

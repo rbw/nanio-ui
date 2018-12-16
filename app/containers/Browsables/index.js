@@ -78,7 +78,7 @@ class Browsables extends React.Component {
               className={classes.exampleLink}
             >
               {`load example `}
-              <LoadExampleIcon style={{ paddingBottom: 3, fontSize: 21 }} />
+              <LoadExampleIcon style={{ paddingBottom: 3, fontSize: 19 }} />
             </span>
           </span>
         </div>

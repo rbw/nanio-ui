@@ -58,14 +58,13 @@ class Sidebar extends React.Component {
   render() {
     const { classes, rpc } = this.props;
     const { expanded } = this.state;
-    console.log('expanded: ', expanded);
 
     return (
       <List
         component="nav"
         subheader={
           <ListSubheader component="div" className={classes.title}>
-            {`NAN<IO/>`}
+            |NANIO|
           </ListSubheader>
         }
         className={classes.root}

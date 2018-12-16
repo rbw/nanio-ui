@@ -47,14 +47,13 @@ export const styles = theme => ({
   },
   exampleLink: {
     padding: 0,
-    fontSize: 12,
-    color: '#713eff',
+    fontSize: 13,
+    color: '#6362c5',
     cursor: 'pointer',
     textTransform: 'uppercase',
-    textShadow: '#e0e0e0 1px 1px 0',
-
     '&:hover': {
       color: '#4b2689',
+      textShadow: '#e0e0e0 1px 1px 0',
     },
   },
 });
