@@ -11,6 +11,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import NodeRPCIcon from '@material-ui/icons/ListAlt';
+import ServerInfoIcon from '@material-ui/icons/InsertChartOutlined';
 
 import Collapse from '@material-ui/core/Collapse';
 
@@ -18,16 +20,33 @@ import { rpcSidebarSelector } from 'containers/App/selectors';
 import { styles } from './styles';
 
 class Sidebar extends React.Component {
-  state = {
-    open: true,
-  };
+  constructor(props) {
+    super(props);
 
-  handleClick = () => {
-    this.setState(state => ({ open: !state.open }));
+    this.state = {
+      expanded: ['node_rpc'],
+    };
+  }
+
+  toggleExpanded = e => {
+    const clicked = e.target.id;
+
+    if (this.state.expanded.includes(clicked)) {
+      this.setState(state => ({
+        expanded: state.expanded.filter(item => item !== clicked),
+      }));
+    } else {
+      this.setState(state => state.expanded.push(clicked));
+    }
   };
 
   getNestedItem = text => (
-    <ListItem button key={text} component="a" href={`#${text}`}>
+    <ListItem
+      button
+      key={text}
+      component="a"
+      href={`#${text}`}
+    >
       <ListItemText
         primary={text}
         disableTypography
@@ -38,31 +57,51 @@ class Sidebar extends React.Component {
 
   render() {
     const { classes, rpc } = this.props;
+    const { expanded } = this.state;
+    console.log('expanded: ', expanded);
 
     return (
       <List
         component="nav"
         subheader={
           <ListSubheader component="div" className={classes.title}>
-            {'[NANIO]'}
+            {`NAN<IO/>`}
           </ListSubheader>
         }
         className={classes.root}
       >
-        <ListItem button onClick={this.handleClick}>
+        <ListItem
+          button
+          className={classes.listItem}
+          onClick={this.toggleExpanded}
+        >
+          <ServerInfoIcon className={classes.menuIcon} />
           <ListItemText
-            primary="Node RPC"
+            primary="Stats"
             disableTypography
             className={classes.itemText}
           />
-          {this.state.open ? (
+        </ListItem>
+        <ListItem
+          button
+          className={classes.listItem}
+          onClick={this.toggleExpanded}
+        >
+          <NodeRPCIcon className={classes.menuIcon} />
+          <ListItemText
+            primary="Node RPC"
+            id="node_rpc"
+            disableTypography
+            className={classes.itemText}
+          />
+          {expanded.includes('node_rpc') ? (
             <ExpandLess className={classes.expandable} />
           ) : (
             <ExpandMore className={classes.expandable} />
           )}
         </ListItem>
         <Collapse
-          in={this.state.open}
+          in={expanded.includes('node_rpc')}
           timeout="auto"
           unmountOnExit
           className={classes.nested}

@@ -6,6 +6,7 @@ export const styles = theme => ({
     backgroundColor: '#343434',
     paddingTop: 20,
     boxShadow: '1px 1px 5px grey',
+    fontFamily: 'monospace',
   },
   title: {
     fontFamily: 'Text Me One',
@@ -19,16 +20,31 @@ export const styles = theme => ({
     marginBottom: 15,
   },
   itemText: {
-    fontSize: 18,
+    fontSize: 15,
     color: '#e2e8de',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 5,
+  },
+  listItem: {
+    color: '#a8ada6',
+    padding: 0,
+    paddingLeft: 20,
+    cursor: 'pointer',
+  },
+  menuIcon: {
+    fontSize: 20,
+    paddingBottom: 3,
   },
   itemTextNested: {
-    fontSize: 17,
+    fontSize: 14,
     color: '#c4c9c1',
-    marginLeft: theme.spacing.unit * 3,
+    marginLeft: theme.spacing.unit * 4,
   },
   expandable: {
     color: '#939790',
+    paddingRight: 8,
+    marginRight: 5,
   },
   nested: {
     boxShadow: '0px 0px 1px 0px #4E4E4E',

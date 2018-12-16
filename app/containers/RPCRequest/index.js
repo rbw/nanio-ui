@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import AceEditor from 'react-ace';
 import 'brace/mode/json';
 import 'brace/theme/pastel_on_dark';
-import { payloadSend, requestSet } from './actions';
+import { payloadSend } from './actions';
 import {
   loadingSelector,
   payloadSelector,
@@ -73,7 +73,7 @@ class RPCRequest extends React.PureComponent {
           onClick={this.sendPayload}
           disabled={loading}
         >
-          RUN
+          SEND
         </Button>
         <AceEditor
           className={classes.editor}
@@ -87,9 +87,8 @@ class RPCRequest extends React.PureComponent {
           showPrintMargin={false}
           highlightActiveLine={false}
           value={this.state.payload}
-          style={{ overflow: 'hidden' }}
           editorProps={{
-            $blockScrolling: Infinity,
+            $blockScrolling: true,
             $cursorStyle: 'smooth',
             $fontFamily: 'tahoma',
           }}
@@ -113,9 +112,6 @@ export function mapDispatchToProps(dispatch) {
   return {
     sendPayload: data => {
       dispatch(payloadSend(data));
-    },
-    setRequest: (data, _protected) => {
-      dispatch(requestSet(data, _protected));
     },
   };
 }

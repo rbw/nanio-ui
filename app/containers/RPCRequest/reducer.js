@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 import {
   REQUEST_SET,
   LOAD_REQUESTED,
@@ -14,8 +14,9 @@ export const initialState = fromJS({
     begin: 0,
     end: 0,
   },
+  action: undefined,
   protected: undefined,
-  payload: {},
+  payload: {"action": "version"},
 });
 
 function rpcReducer(state = initialState, action) {
@@ -26,12 +27,13 @@ function rpcReducer(state = initialState, action) {
     case REQUEST_SET:
       return state
         .set('payload', fromJS(action.payload))
-        .set('protected', action.protected);
+        .set('action', fromJS(action.action));
     case LOAD_REQUESTED:
       return initialState
         .set('loading', true)
         .set('payload', state.get('payload'))
         .set('protected', state.get('protected'))
+        .set('action', state.get('action'))
         .setIn(['time', 'begin'], timestamp);
     case LOAD_RESOLVED:
       return state

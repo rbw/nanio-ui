@@ -6,9 +6,10 @@ import {
   LOAD_REJECTED,
 } from './constants';
 
-export function requestSet(data, _protected) {
+export function requestSet(action, data, _protected) {
   return {
     type: REQUEST_SET,
+    action,
     payload: data,
     protected: _protected,
   };

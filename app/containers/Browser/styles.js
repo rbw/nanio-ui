@@ -1,19 +1,20 @@
 export const styles = theme => ({
   root: {
     padding: 0,
-    height: '100vh',
-  },
-  leftPane: {
-    overflowY: 'hidden',
-    overflowX: 'hidden',
+    height: '100%',
   },
   rightPane: {
-    overflowY: 'hidden',
-    padding: 35,
+    height: '100%',
+    padding: 20,
+    paddingTop: 15,
+    paddingBottom: 0,
     backgroundColor: '#343434',
     boxShadow: '-1px 0px 1px grey',
   },
+  leftPane: {
+  },
   rightPaneTitle: {
+    height: 40,
     fontSize: 24,
     textAlign: 'right',
     textTransform: 'uppercase',
@@ -21,10 +22,17 @@ export const styles = theme => ({
     letterSpacing: 3,
     textShadow: '-1px -1px 1px #222222, 2px 2px 1px #404040',
   },
-  rightPaneResponse: {
-    marginTop: 20,
+  responseTitle: {
+    borderBottomColor: '#673333',
     borderWidth: '0 0 1px 0',
     borderStyle: 'solid',
-    borderBottomColor: '#673333',
+  },
+  actionBarWrapper: {
+    height: 60,
+    padding: 20,
+    borderBottom: '1px dashed #D2D2D2',
+  },
+  actionBar: {
+    background: '#FFFFFF',
   },
 });

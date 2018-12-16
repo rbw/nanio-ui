@@ -8,7 +8,10 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import LoadExampleIcon from '@material-ui/icons/Input';
+import { createStructuredSelector } from 'reselect';
 import { requestSet } from 'containers/RPCRequest/actions';
+import { rpcConfigSelector } from 'containers/App/selectors';
 import { styles } from './styles';
 import FieldsTable from './fields';
 
@@ -24,7 +27,7 @@ class Browsables extends React.Component {
       .reduce((map, { name }) => ({ ...map, [name]: '' }), {});
 
     payload.action = action;
-    this.props.setRequest(payload, _protected);
+    this.props.setRequest(action, payload, _protected);
   };
 
   handleChange = panel => (event, expanded) => {
@@ -69,10 +72,13 @@ class Browsables extends React.Component {
           </span>
           <span>
             <span
-              onClick={() => setRequest(examples.request, action.protected)}
+              onClick={() =>
+                setRequest(action.action, examples.request, action.protected)
+              }
               className={classes.exampleLink}
             >
-              load example {`=>`}
+              {`load example `}
+              <LoadExampleIcon style={{ paddingBottom: 3, fontSize: 21 }} />
             </span>
           </span>
         </div>
@@ -113,7 +119,7 @@ class Browsables extends React.Component {
 
     return (
       <div key={groupName} className={classes.groupHeading} id={groupName}>
-        <Typography variant="h5" paragraph>
+        <Typography paragraph className={classes.title}>
           {groupName}
         </Typography>
         {actions.map(this.renderAction)}
@@ -122,11 +128,11 @@ class Browsables extends React.Component {
   };
 
   render() {
-    const { classes, actionGroups } = this.props;
+    const { classes, rpcConfig } = this.props;
 
     return (
       <div className={classes.root}>
-        {actionGroups.entrySeq().map(this.renderActionGroup)}
+        {rpcConfig.entrySeq().map(this.renderActionGroup)}
       </div>
     );
   }
@@ -135,23 +141,20 @@ class Browsables extends React.Component {
 Browsables.propTypes = {
   classes: PropTypes.object.isRequired,
   setRequest: PropTypes.func.isRequired,
-  actionGroups: PropTypes.object,
+  rpcConfig: PropTypes.object,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    setRequest: (data, _protected) => {
-      dispatch(requestSet(data, _protected));
+    setRequest: (action, data, _protected) => {
+      dispatch(requestSet(action, data, _protected));
     },
   };
 }
 
-export function mapStateToProps(state) {
-  const groups = state.getIn(['global', 'config', 'rpc']);
-  return {
-    actionGroups: groups,
-  };
-}
+const mapStateToProps = createStructuredSelector({
+  rpcConfig: rpcConfigSelector(),
+});
 
 export default compose(
   withStyles(styles),

@@ -28,6 +28,8 @@ import { styles } from './styles';
 import { uiConfig } from './actions';
 import { loadingSelector } from './selectors';
 
+import './scrollbar.css';
+import './overrides.css';
 
 const theme = createMuiTheme({
   props: {

@@ -1,12 +1,20 @@
 export const styles = theme => ({
   root: {
     width: '100%',
-    padding: 10,
-    paddingTop: 0,
-    marginBottom: 7,
+    padding: 20,
+    paddingRight: 25,
+  },
+  title: {
+    textTransform: 'uppercase',
+    fontSize: 20,
+    borderBottomWidth: 1,
+    borderBottomStyle: 'dashed',
+    borderBottomColor: '#c1bfb5',
   },
   groupHeading: {
-    padding: 20,
+    marginBottom: 20,
+    padding: 2,
+    paddingTop: 0,
   },
   itemLeftHeading: {
     fontSize: theme.typography.pxToRem(15),
@@ -39,13 +47,14 @@ export const styles = theme => ({
   },
   exampleLink: {
     padding: 0,
-    fontSize: 16,
-    color: '#595dc5',
+    fontSize: 12,
+    color: '#713eff',
     cursor: 'pointer',
-    textTransform: 'lowercase',
+    textTransform: 'uppercase',
+    textShadow: '#e0e0e0 1px 1px 0',
+
     '&:hover': {
-      color: '#3a3c80',
-      textDecoration: 'underline',
+      color: '#4b2689',
     },
   },
 });

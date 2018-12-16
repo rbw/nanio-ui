@@ -3,7 +3,8 @@ export const styles = () => ({
     display: 'flex',
     alignItems: 'flex-end',
     flexDirection: 'column-reverse',
-    maxHeight: '45%',
+    height: 'calc(100% - 50px)',
+    overflow: 'hidden',
   },
   editor: {
     boxShadow: '2px 3px 15px rgba(0, 0, 0, 0.3)',
@@ -21,7 +22,7 @@ export const styles = () => ({
     borderRadius: 2,
     backgroundColor: '#343434',
     color: '#939790',
-    margin: -15,
+    margin: -20,
     zIndex: 2,
     height: 35,
     alignItems: 'center',

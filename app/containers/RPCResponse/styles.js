@@ -1,6 +1,9 @@
 export const styles = theme => ({
   root: {
-    padding: 15,
+    overflow: 'scroll',
+    height: '100%',
+    marginTop: 5,
+    paddingBottom: 20,
   },
   summary: {
     padding: 10,
