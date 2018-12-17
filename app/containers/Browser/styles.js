@@ -23,7 +23,7 @@ export const styles = theme => ({
     textShadow: '-1px -1px 1px #222222, 2px 2px 1px #404040',
   },
   responseTitle: {
-    borderBottomColor: '#673333',
+    borderBottomColor: '#693434',
     borderWidth: '0 0 1px 0',
     borderStyle: 'solid',
   },

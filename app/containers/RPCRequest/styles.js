@@ -32,7 +32,6 @@ export const styles = () => ({
     width: 120,
     '&:hover': {
       backgroundColor: '#373737',
-      color: '#caa931',
       cursor: 'pointer',
       borderColor: '#585858',
     },

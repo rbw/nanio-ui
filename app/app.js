@@ -6,6 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router/immutable';
+import { Route } from 'react-router-dom';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
@@ -26,7 +27,7 @@ const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <App />
+        <Route path="/" component={App} />
       </ConnectedRouter>
     </Provider>,
     MOUNT_NODE,

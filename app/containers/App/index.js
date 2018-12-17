@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -18,13 +18,13 @@ import Grid from '@material-ui/core/Grid';
 import { CircularProgress } from '@material-ui/core';
 
 import Browser from 'containers/Browser';
-import About from 'containers/About';
+import Settings from 'containers/Settings';
 import NotFoundPage from 'containers/NotFoundPage';
 import injectSaga from 'utils/injectSaga';
 
 import saga from 'containers/Backend/sagas';
 
-import Sidebar from '../Sidebar/index_new';
+import Sidebar from '../Sidebar';
 import { styles } from './styles';
 import { uiConfig } from './actions';
 import { loadingSelector } from './selectors';
@@ -65,7 +65,7 @@ const theme = createMuiTheme({
   },
 });
 
-class Root extends React.PureComponent {
+class App extends React.PureComponent {
   componentWillMount() {
     this.props.getUiConfig();
   }
@@ -99,9 +99,12 @@ class Root extends React.PureComponent {
             style={{ visibility: loading ? 'hidden' : 'visible' }}
           >
             <Switch>
-              <Route exact path="/" component={About} />
-              <Route exact path="/browser" component={Browser} />
-              <Route path="" component={NotFoundPage} />
+              <Route exact path="/">
+                <Redirect to="/browser" />
+              </Route>
+              <Route path="/settings" component={Settings} />
+              <Route path="/browser" component={Browser} />
+              <Route component={NotFoundPage} />
             </Switch>
           </Grid>
         </Grid>
@@ -110,7 +113,7 @@ class Root extends React.PureComponent {
   }
 }
 
-Root.propTypes = {
+App.propTypes = {
   classes: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   getUiConfig: PropTypes.func.isRequired,
@@ -135,4 +138,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps,
   ),
-)(Root);
+)(App);

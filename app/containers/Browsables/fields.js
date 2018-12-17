@@ -16,19 +16,25 @@ const styles = theme => ({
   },
 });
 
+const TableHeadRow = withStyles(theme => ({
+  head: {
+    backgroundColor: '#f8f8f8',
+  },
+}))(TableRow);
+
 function FieldsTable(props) {
   const { classes, fields } = props;
 
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} elevation={3}>
       <Table className={classes.table}>
         <TableHead>
-          <TableRow>
+          <TableHeadRow>
             <TableCell>Field name</TableCell>
             <TableCell>Required</TableCell>
             <TableCell>Type</TableCell>
             <TableCell>Description</TableCell>
-          </TableRow>
+          </TableHeadRow>
         </TableHead>
         <TableBody>
           {fields.map(field => {

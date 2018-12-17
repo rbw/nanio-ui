@@ -8,6 +8,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExampleLinkIcon from '@material-ui/icons/Layers';
+import AttributesIcon from '@material-ui/icons/Notes';
 import { createStructuredSelector } from 'reselect';
 import { requestSet } from 'containers/RPCRequest/actions';
 import { rpcConfigSelector } from 'containers/App/selectors';
@@ -35,22 +37,6 @@ class Browsables extends React.Component {
     });
   };
 
-  renderEnabled = isEnabled => {
-    return isEnabled ? (
-      <span style={{ color: '#86b186' }}> enabled</span>
-    ) : (
-      <span style={{ color: '#ce6a6a' }}> disabled</span>
-    );
-  };
-
-  renderProtected = isProtected => {
-    return isProtected ? (
-      <span style={{ color: '#ce6ab7' }}> protected</span>
-    ) : (
-      <span style={{ color: '#86b186' }}> public</span>
-    );
-  };
-
   renderDetails = action => {
     const { classes, setRequest } = this.props;
     const { examples } = action;
@@ -63,10 +49,11 @@ class Browsables extends React.Component {
         <FieldsTable fields={action.fields} />
         <div className={classes.expansionFooter}>
           <span style={{ float: 'left' }}>
-            access:
+            <AttributesIcon style={{ paddingBottom: 2, paddingRight: 3 }} />
             <span>
-              {this.renderProtected(action.protected)},
-              {this.renderEnabled(action.enabled)}
+              {action.enabled ? 'enabled' : 'disabled'}
+              {`, `}
+              {action.protected ? 'protected' : 'public'}
             </span>
           </span>
           <span>
@@ -76,7 +63,7 @@ class Browsables extends React.Component {
               }
               className={classes.exampleLink}
             >
-              load example
+              [load example]
             </span>
           </span>
         </div>
