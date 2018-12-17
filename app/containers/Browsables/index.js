@@ -8,7 +8,6 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import LoadExampleIcon from '@material-ui/icons/Input';
 import { createStructuredSelector } from 'reselect';
 import { requestSet } from 'containers/RPCRequest/actions';
 import { rpcConfigSelector } from 'containers/App/selectors';
@@ -77,8 +76,7 @@ class Browsables extends React.Component {
               }
               className={classes.exampleLink}
             >
-              {`load example `}
-              <LoadExampleIcon style={{ paddingBottom: 3, fontSize: 19 }} />
+              load example
             </span>
           </span>
         </div>

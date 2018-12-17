@@ -18,7 +18,7 @@ export class Browser extends React.PureComponent {
 
     return (
       <Grid container direction="row" className={classes.root}>
-        <Grid item lg={6} xs={7} className={classes.leftPane}>
+        <Grid container item lg={6} xs={7} className={classes.leftPane}>
           <PerfectScrollbar>
             <Browsables />
           </PerfectScrollbar>

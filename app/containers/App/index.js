@@ -18,12 +18,13 @@ import Grid from '@material-ui/core/Grid';
 import { CircularProgress } from '@material-ui/core';
 
 import Browser from 'containers/Browser';
+import About from 'containers/About';
 import NotFoundPage from 'containers/NotFoundPage';
 import injectSaga from 'utils/injectSaga';
 
 import saga from 'containers/Backend/sagas';
 
-import Sidebar from '../Sidebar';
+import Sidebar from '../Sidebar/index_new';
 import { styles } from './styles';
 import { uiConfig } from './actions';
 import { loadingSelector } from './selectors';
@@ -38,7 +39,7 @@ const theme = createMuiTheme({
     },
   },
   transitions: {
-    // create: () => 'none',
+    create: () => 'none',
   },
   typography: {
     fontFamily: ['Roboto'],
@@ -98,7 +99,7 @@ class Root extends React.PureComponent {
             style={{ visibility: loading ? 'hidden' : 'visible' }}
           >
             <Switch>
-              <Route exact path="/" component={Browser} />
+              <Route exact path="/" component={About} />
               <Route exact path="/browser" component={Browser} />
               <Route path="" component={NotFoundPage} />
             </Switch>

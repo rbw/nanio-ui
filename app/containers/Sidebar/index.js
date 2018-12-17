@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { createStructuredSelector } from 'reselect';
+import { Link } from 'react-router-dom';
 
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
@@ -11,8 +12,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import NodeRPCIcon from '@material-ui/icons/ListAlt';
-import ServerInfoIcon from '@material-ui/icons/InsertChartOutlined';
+import BrowseIcon from '@material-ui/icons/ListAlt';
+import AboutIcon from '@material-ui/icons/InfoOutlined';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 import Collapse from '@material-ui/core/Collapse';
 
@@ -64,7 +66,7 @@ class Sidebar extends React.Component {
         component="nav"
         subheader={
           <ListSubheader component="div" className={classes.title}>
-            |NANIO|
+            / NANIO /
           </ListSubheader>
         }
         className={classes.root}
@@ -72,11 +74,10 @@ class Sidebar extends React.Component {
         <ListItem
           button
           className={classes.listItem}
-          onClick={this.toggleExpanded}
         >
-          <ServerInfoIcon className={classes.menuIcon} />
+          <AboutIcon className={classes.menuIcon} />
           <ListItemText
-            primary="Stats"
+            primary="About"
             disableTypography
             className={classes.itemText}
           />
@@ -84,11 +85,13 @@ class Sidebar extends React.Component {
         <ListItem
           button
           className={classes.listItem}
+          component="a"
+          href="browser"
           onClick={this.toggleExpanded}
         >
-          <NodeRPCIcon className={classes.menuIcon} />
+          <BrowseIcon className={classes.menuIcon} />
           <ListItemText
-            primary="Node RPC"
+            primary="Browse"
             id="node_rpc"
             disableTypography
             className={classes.itemText}
@@ -107,6 +110,40 @@ class Sidebar extends React.Component {
         >
           <List component="div" disablePadding>
             {rpc.map(this.getNestedItem)}
+          </List>
+        </Collapse>
+        <ListItem
+          button
+          className={classes.listItem}
+          onClick={this.toggleExpanded}
+        >
+          <SettingsIcon className={classes.menuIcon} />
+          <ListItemText
+            primary="Settings"
+            id="settings"
+            disableTypography
+            className={classes.itemText}
+          />
+          {expanded.includes('settings') ? (
+            <ExpandLess className={classes.expandable} />
+          ) : (
+            <ExpandMore className={classes.expandable} />
+          )}
+        </ListItem>
+        <Collapse
+          in={expanded.includes('settings')}
+          timeout="auto"
+          unmountOnExit
+          className={classes.nested}
+        >
+          <List component="div" disablePadding>
+            <ListItem button>
+              <ListItemText
+                primary="Authentication"
+                disableTypography
+                className={this.props.classes.itemTextNested}
+              />
+            </ListItem>
           </List>
         </Collapse>
       </List>

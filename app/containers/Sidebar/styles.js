@@ -7,6 +7,7 @@ export const styles = theme => ({
     paddingTop: 20,
     boxShadow: '1px 1px 5px grey',
     fontFamily: 'monospace',
+    fontSize: 16,
   },
   title: {
     fontFamily: 'Text Me One',
@@ -20,7 +21,6 @@ export const styles = theme => ({
     marginBottom: 15,
   },
   itemText: {
-    fontSize: 15,
     color: '#e2e8de',
     paddingTop: 10,
     paddingBottom: 10,
@@ -33,13 +33,16 @@ export const styles = theme => ({
     cursor: 'pointer',
   },
   menuIcon: {
-    fontSize: 20,
-    paddingBottom: 3,
+    marginRight: 3,
+    color: '#a8ada6',
+    fontSize: 12,
+    marginBottom: 2,
   },
   itemTextNested: {
-    fontSize: 14,
+    padding: 0,
     color: '#c4c9c1',
-    marginLeft: theme.spacing.unit * 4,
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: 2,
   },
   expandable: {
     color: '#939790',
@@ -47,7 +50,13 @@ export const styles = theme => ({
     marginRight: 5,
   },
   nested: {
-    boxShadow: '0px 0px 1px 0px #4E4E4E',
+    fontSize: 14,
+    width: 'calc(100% - 2px)',
+    boxShadow: '0px 0px 1px 0px #444444',
     backgroundColor: '#2b2b2b',
+  },
+  navLink: {
+    textDecoration: 'none',
+    color: theme.palette.common.black,
   },
 });

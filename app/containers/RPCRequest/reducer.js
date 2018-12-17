@@ -16,7 +16,7 @@ export const initialState = fromJS({
   },
   action: undefined,
   protected: undefined,
-  payload: {"action": "version"},
+  payload: { action: 'version' },
 });
 
 function rpcReducer(state = initialState, action) {

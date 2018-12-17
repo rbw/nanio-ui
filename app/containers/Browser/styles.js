@@ -9,7 +9,6 @@ export const styles = theme => ({
     paddingTop: 15,
     paddingBottom: 0,
     backgroundColor: '#343434',
-    boxShadow: '-1px 0px 1px grey',
   },
   leftPane: {
     height: '100vh',
