@@ -9,11 +9,7 @@ import AceEditor from 'react-ace';
 import 'brace/mode/json';
 import 'brace/theme/pastel_on_dark';
 import { payloadSend } from './actions';
-import {
-  loadingSelector,
-  payloadSelector,
-  protectedSelector,
-} from './selectors';
+import { loadingSelector, payloadSelector } from './selectors';
 
 import { styles } from './styles';
 
@@ -59,11 +55,7 @@ class RPCRequest extends React.PureComponent {
   }
 
   render() {
-    const { classes, extra, loading, isProtected } = this.props;
-
-    console.log(isProtected);
-
-    // const missingAuth = isProtected
+    const { classes, extra, loading } = this.props;
 
     return (
       <div className={classes.root}>
@@ -103,7 +95,6 @@ RPCRequest.propTypes = {
   classes: PropTypes.object.isRequired,
   extra: PropTypes.object,
   payload: PropTypes.object.isRequired,
-  isProtected: PropTypes.bool,
   sendPayload: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
@@ -118,7 +109,6 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   payload: payloadSelector(),
-  isProtected: protectedSelector(),
   loading: loadingSelector(),
 });
 

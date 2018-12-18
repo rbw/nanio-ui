@@ -18,12 +18,12 @@ class Settings extends React.PureComponent {
   };
 
   saveSettings = () => {
-    localStorage.setItem('apiKey', this.state.apiKey);
+    localStorage.setItem('__nanio_k', this.state.apiKey);
     this.props.hide();
   };
 
   componentWillMount() {
-    this.setState({ apiKey: localStorage.getItem('apiKey') || '' });
+    this.setState({ apiKey: localStorage.getItem('__nanio_k') || '' });
   }
 
   render() {
@@ -39,6 +39,7 @@ class Settings extends React.PureComponent {
             name="apiKey"
             value={this.state.apiKey}
             onChange={this.handleChange}
+            helperText="Allows access to protected parts of the API"
           />
         </form>
       </Modal>

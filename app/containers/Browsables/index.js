@@ -11,7 +11,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AttributesIcon from '@material-ui/icons/Notes';
 import { createStructuredSelector } from 'reselect';
 import { requestSet } from 'containers/RPCRequest/actions';
-import { rpcSchemaSelector } from './selectors';
+import { schemasSelector } from './selectors';
 import { styles } from './styles';
 import FieldsTable from './fields';
 
@@ -112,11 +112,11 @@ class Browsables extends React.Component {
   };
 
   render() {
-    const { classes, rpcSchema } = this.props;
+    const { classes, schemas } = this.props;
 
     return (
       <div className={classes.root}>
-        {rpcSchema.entrySeq().map(this.renderActionGroup)}
+        {schemas.entrySeq().map(this.renderActionGroup)}
       </div>
     );
   }
@@ -125,7 +125,7 @@ class Browsables extends React.Component {
 Browsables.propTypes = {
   classes: PropTypes.object.isRequired,
   setRequest: PropTypes.func.isRequired,
-  rpcSchema: PropTypes.object,
+  schemas: PropTypes.object,
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -137,7 +137,7 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  rpcSchema: rpcSchemaSelector(),
+  schemas: schemasSelector(),
 });
 
 export default compose(

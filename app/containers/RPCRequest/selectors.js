@@ -3,24 +3,23 @@ import { initialState } from './reducer';
 
 const selectRPC = state => state.get('rpc', initialState);
 
-export const responseSelector = () =>
+const responseSelector = () =>
   createSelector(
     createSelector(selectRPC, rpcState => rpcState.get('result')),
     createSelector(selectRPC, rpcState => rpcState.get('time')),
     (result, time) => ({ result, elapsed: time.get('end') - time.get('begin') })
   );
 
-export const actionSelector = () =>
+const actionSelector = () =>
   createSelector(selectRPC, rpcState => rpcState.get('action'));
 
-export const protectedSelector = () =>
-  createSelector(selectRPC, rpcState => rpcState.get('protected'));
-
-export const payloadSelector = () =>
+const payloadSelector = () =>
   createSelector(selectRPC, rpcState => rpcState.get('payload'));
 
-export const loadingSelector = () =>
+const loadingSelector = () =>
   createSelector(selectRPC, rpcState => rpcState.get('loading'));
 
-export const errorSelector = () =>
+const errorSelector = () =>
   createSelector(selectRPC, rpcState => rpcState.get('error'));
+
+export { selectRPC, responseSelector, actionSelector, payloadSelector, loadingSelector, errorSelector };

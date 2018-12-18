@@ -169,7 +169,7 @@ class Sidebar extends React.Component {
           <Octicon
             className={classes.githubLinkIcon}
             icon={MarkGithub}
-            size="large"
+            size={50}
           />
         </a>
       </List>
@@ -189,8 +189,7 @@ export function mapDispatchToProps(dispatch) {
       dispatch(
         showSettingsModal({
           titleText: 'Configure',
-          contextText:
-            'Settings are persisted in the browser using localStorage',
+          contextText: 'Settings are /currently/ persisted in the browser.',
           confirmButtonText: 'Save',
           cancelButtonText: 'Cancel',
           width: 650,

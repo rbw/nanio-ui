@@ -27,7 +27,7 @@ import saga from 'containers/Backend/sagas';
 
 import Sidebar from '../Sidebar';
 import { styles } from './styles';
-import { getRPCSchema } from './actions';
+import { getRPCSchemas } from './actions';
 import { loadingSelector } from './selectors';
 
 import './scrollbar.css';
@@ -68,7 +68,7 @@ const theme = createMuiTheme({
 
 class App extends React.PureComponent {
   componentWillMount() {
-    this.props.getRPCSchema();
+    this.props.getRPCSchemas();
   }
 
   render() {
@@ -118,13 +118,13 @@ class App extends React.PureComponent {
 App.propTypes = {
   classes: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
-  getRPCSchema: PropTypes.func.isRequired,
+  getRPCSchemas: PropTypes.func.isRequired,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    getRPCSchema: () => {
-      dispatch(getRPCSchema());
+    getRPCSchemas: () => {
+      dispatch(getRPCSchemas());
     },
   };
 }

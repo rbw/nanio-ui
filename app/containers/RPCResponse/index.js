@@ -41,7 +41,9 @@ export class RPCResponse extends React.PureComponent {
   };
 
   resFormatter = res => {
-    switch (this.props.action) {
+    const { action } = this.props;
+
+    switch (action) {
       case 'block':
         if (res.contents && typeof res.contents === 'string') {
           return JSON.parse(res.contents);
@@ -56,10 +58,12 @@ export class RPCResponse extends React.PureComponent {
             res.blocks[hash].contents = JSON.parse(block.contents);
           }
         });
-        return res;
+        break;
       default:
-        return res;
+        break;
     }
+
+    return res;
   };
 
   componentWillReceiveProps(nextProps) {
@@ -67,7 +71,6 @@ export class RPCResponse extends React.PureComponent {
 
     if (result && result.size > 0) {
       this.setState({ result: this.resFormatter(result.toJS()) });
-      console.log(this.state.result);
     }
   }
 
