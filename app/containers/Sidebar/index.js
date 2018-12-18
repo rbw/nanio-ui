@@ -188,6 +188,9 @@ export function mapDispatchToProps(dispatch) {
     openSettings: () => {
       dispatch(
         showSettingsModal({
+          titleText: 'Configure',
+          contextText:
+            'Settings are persisted in the browser using localStorage',
           confirmButtonText: 'Save',
           cancelButtonText: 'Cancel',
           width: 650,

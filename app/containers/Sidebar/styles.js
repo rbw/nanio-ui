@@ -73,7 +73,7 @@ export const styles = theme => ({
   githubLinkIcon: {
     color: '#454545',
     '&:hover': {
-      color: '#806060',
+      color: '#c4c9c1',
       cursor: 'pointer',
     },
   },

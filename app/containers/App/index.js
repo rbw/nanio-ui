@@ -27,7 +27,7 @@ import saga from 'containers/Backend/sagas';
 
 import Sidebar from '../Sidebar';
 import { styles } from './styles';
-import { uiConfig } from './actions';
+import { getRPCSchema } from './actions';
 import { loadingSelector } from './selectors';
 
 import './scrollbar.css';
@@ -40,7 +40,7 @@ const theme = createMuiTheme({
     },
   },
   transitions: {
-    create: () => 'none',
+    // create: () => 'none',
   },
   typography: {
     fontFamily: ['Roboto'],
@@ -54,13 +54,13 @@ const theme = createMuiTheme({
       paper: '#FFFFFF',
     },
     primary: {
-      light: '#00adb5',
-      main: '#53354a',
+      dark: '#6e6e6e',
+      main: '#525252',
       contrastText: '#7a7a7a',
     },
     secondary: {
-      light: '#0066ff',
-      main: '#414D59',
+      dark: '#6e6e6e',
+      main: '#525252',
       contrastText: '#3a3a3a',
     },
   },
@@ -68,7 +68,7 @@ const theme = createMuiTheme({
 
 class App extends React.PureComponent {
   componentWillMount() {
-    this.props.getUiConfig();
+    this.props.getRPCSchema();
   }
 
   render() {
@@ -86,7 +86,7 @@ class App extends React.PureComponent {
               thickness={3}
               style={{ width: 42, height: 42, color: '#90878d' }}
             />
-            <div className={classes.loadingMessage}>fetching config</div>
+            <div className={classes.loadingMessage}>y-uh-huh.</div>
           </div>
         </div>
         <Grid container className={classes.root} direction="row">
@@ -118,13 +118,13 @@ class App extends React.PureComponent {
 App.propTypes = {
   classes: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
-  getUiConfig: PropTypes.func.isRequired,
+  getRPCSchema: PropTypes.func.isRequired,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    getUiConfig: () => {
-      dispatch(uiConfig());
+    getRPCSchema: () => {
+      dispatch(getRPCSchema());
     },
   };
 }

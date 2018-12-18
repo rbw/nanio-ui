@@ -9,10 +9,9 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AttributesIcon from '@material-ui/icons/Notes';
-import ExamplePushIcon from '@material-ui/icons/Sync';
 import { createStructuredSelector } from 'reselect';
 import { requestSet } from 'containers/RPCRequest/actions';
-import { rpcConfigSelector } from 'containers/App/selectors';
+import { rpcSchemaSelector } from './selectors';
 import { styles } from './styles';
 import FieldsTable from './fields';
 
@@ -64,7 +63,6 @@ class Browsables extends React.Component {
               className={classes.exampleLink}
             >
               load example
-              <ExamplePushIcon className={classes.exampleLinkIcon} />
             </span>
           </span>
         </div>
@@ -114,11 +112,11 @@ class Browsables extends React.Component {
   };
 
   render() {
-    const { classes, rpcConfig } = this.props;
+    const { classes, rpcSchema } = this.props;
 
     return (
       <div className={classes.root}>
-        {rpcConfig.entrySeq().map(this.renderActionGroup)}
+        {rpcSchema.entrySeq().map(this.renderActionGroup)}
       </div>
     );
   }
@@ -127,7 +125,7 @@ class Browsables extends React.Component {
 Browsables.propTypes = {
   classes: PropTypes.object.isRequired,
   setRequest: PropTypes.func.isRequired,
-  rpcConfig: PropTypes.object,
+  rpcSchema: PropTypes.object,
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -139,7 +137,7 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  rpcConfig: rpcConfigSelector(),
+  rpcSchema: rpcSchemaSelector(),
 });
 
 export default compose(

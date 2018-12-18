@@ -53,8 +53,4 @@ export const styles = theme => ({
       color: '#36366c',
     },
   },
-  exampleLinkIcon: {
-    paddingBottom: 3,
-    fontSize: 22,
-  },
 });

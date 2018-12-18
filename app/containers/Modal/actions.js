@@ -14,8 +14,6 @@ function showDefaultModal(modalType, modalProps) {
 }
 
 export function hideModal() {
-  console.log('bajs!');
-
   return {
     type: MODAL_HIDE,
   };
