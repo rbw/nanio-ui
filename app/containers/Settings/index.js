@@ -1,50 +1,59 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withStyles } from '@material-ui/core/styles';
+import { hideModal } from 'containers/Modal/actions';
 
-class AlertDialog extends React.Component {
-  state = {
-    open: true,
-  };
+import Modal from 'components/Modal';
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
+const styles = () => ({
+  backButton: {
+    position: 'absolute',
+    bottom: 10,
+    left: 6,
+  },
+  cancelButton: {
+    position: 'absolute',
+    bottom: 10,
+    right: 6,
+  },
+});
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+class Settings extends React.PureComponent {
+  state = {};
 
   render() {
+    const { classes, modalProps, hide } = this.props;
+
     return (
-      <Dialog
-        open={this.state.open}
-        onClose={this.handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+      <Modal
+        onCancel={hide}
+        {...modalProps}
       >
-        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={this.handleClose} color="primary">
-            Disagree
-          </Button>
-          <Button onClick={this.handleClose} color="primary" autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
+      </Modal>
     );
   }
 }
 
-export default AlertDialog;
+Settings.propTypes = {
+  hide: PropTypes.func.isRequired,
+  modalProps: PropTypes.object.isRequired,
+  classes: PropTypes.object,
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    hide: () => {
+      dispatch(hideModal());
+    },
+  };
+}
+
+export default compose(
+  withStyles(styles),
+  connect(
+    null,
+    mapDispatchToProps,
+  ),
+)(Settings);

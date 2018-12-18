@@ -17,6 +17,7 @@ import { createStructuredSelector } from 'reselect';
 import Grid from '@material-ui/core/Grid';
 import { CircularProgress } from '@material-ui/core';
 
+import ModalContainer from 'containers/Modal';
 import Browser from 'containers/Browser';
 import Settings from 'containers/Settings';
 import NotFoundPage from 'containers/NotFoundPage';
@@ -108,6 +109,7 @@ class App extends React.PureComponent {
             </Switch>
           </Grid>
         </Grid>
+        <ModalContainer />
       </MuiThemeProvider>
     );
   }

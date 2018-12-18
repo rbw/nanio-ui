@@ -63,4 +63,18 @@ export const styles = theme => ({
     textDecoration: 'none',
     color: theme.palette.common.black,
   },
+  githubLink: {
+    paddingBottom: 20,
+    bottom: 0,
+    position: 'absolute',
+    width: '100%',
+    textAlign: 'center',
+  },
+  githubLinkIcon: {
+    color: '#454545',
+    '&:hover': {
+      color: '#806060',
+      cursor: 'pointer',
+    },
+  },
 });

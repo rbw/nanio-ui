@@ -40,7 +40,7 @@ export const styles = theme => ({
   },
   expansionFooter: {
     width: '100%',
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'right',
     padding: '15px 2px 0px 0px',
     color: '#484848',
@@ -50,7 +50,11 @@ export const styles = theme => ({
     color: '#6362c5',
     '&:hover': {
       cursor: 'pointer',
-      textDecoration: 'underline',
+      color: '#36366c',
     },
+  },
+  exampleLinkIcon: {
+    paddingBottom: 3,
+    fontSize: 22,
   },
 });

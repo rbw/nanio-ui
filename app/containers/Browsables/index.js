@@ -8,8 +8,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExampleLinkIcon from '@material-ui/icons/Layers';
 import AttributesIcon from '@material-ui/icons/Notes';
+import ExamplePushIcon from '@material-ui/icons/Sync';
 import { createStructuredSelector } from 'reselect';
 import { requestSet } from 'containers/RPCRequest/actions';
 import { rpcConfigSelector } from 'containers/App/selectors';
@@ -63,7 +63,8 @@ class Browsables extends React.Component {
               }
               className={classes.exampleLink}
             >
-              [load example]
+              load example
+              <ExamplePushIcon className={classes.exampleLinkIcon} />
             </span>
           </span>
         </div>

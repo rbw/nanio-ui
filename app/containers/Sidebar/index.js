@@ -16,7 +16,9 @@ import {
 
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Icon from '@material-ui/core/Icon';
+import Octicon, { MarkGithub } from '@githubprimer/octicons-react';
 
+import { showSettingsModal } from 'containers/Modal/actions';
 import { rpcItemsSelector } from './selectors';
 import { styles } from './styles';
 
@@ -35,11 +37,11 @@ class Sidebar extends React.Component {
     </ListItemIcon>
   );
 
-  renderItemText = item => {
+  renderItemText = (item, onClick = null) => {
     const { classes } = this.props;
 
     return (
-      <ListItem button className={classes.listItem}>
+      <ListItem button className={classes.listItem} onClick={onClick} key={item.id}>
         {this.renderIcon(item.icon)}
         <ListItemText
           primary={item.label}
@@ -52,6 +54,7 @@ class Sidebar extends React.Component {
 
   renderLeaf = item => {
     const { classes } = this.props;
+    let onClick = null;
 
     if ('link' in item) {
       return (
@@ -61,11 +64,17 @@ class Sidebar extends React.Component {
       );
     }
 
-    return (
-      <HashLink to={item.link} key={item.id} className={classes.navLink}>
-        {this.renderItemText(item)}
-      </HashLink>
-    );
+    if ('modal' in item) {
+      switch (item.modal) {
+        case 'settings':
+          onClick = this.props.openSettings;
+          break;
+        default:
+          break;
+      }
+    }
+
+    return this.renderItemText(item, onClick);
   };
 
   toggleExpanded = e => {
@@ -134,7 +143,7 @@ class Sidebar extends React.Component {
       {
         id: 'root_settings',
         label: 'configure',
-        link: '#',
+        modal: 'settings',
         dialog: 'settings',
         icon: 'style',
       },
@@ -152,6 +161,17 @@ class Sidebar extends React.Component {
         className={classes.root}
       >
         {sidebar.map(this.renderItem)}
+        <a
+          className={classes.githubLink}
+          href="http://github.com/rbw/nanio"
+          target="_blank"
+        >
+          <Octicon
+            className={classes.githubLinkIcon}
+            icon={MarkGithub}
+            size="large"
+          />
+        </a>
       </List>
     );
   }
@@ -160,7 +180,22 @@ class Sidebar extends React.Component {
 Sidebar.propTypes = {
   classes: PropTypes.object.isRequired,
   rpcItems: PropTypes.array.isRequired,
+  openSettings: PropTypes.func.isRequired,
 };
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    openSettings: () => {
+      dispatch(
+        showSettingsModal({
+          confirmButtonText: 'Save',
+          cancelButtonText: 'Cancel',
+          width: 650,
+        }),
+      );
+    },
+  };
+}
 
 const mapStateToProps = createStructuredSelector({
   rpcItems: rpcItemsSelector(),
@@ -170,6 +205,6 @@ export default compose(
   withStyles(styles),
   connect(
     mapStateToProps,
-    null,
+    mapDispatchToProps,
   ),
 )(Sidebar);
