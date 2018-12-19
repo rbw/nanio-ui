@@ -17,7 +17,7 @@ export function requestSet(action, data, _protected) {
 
 export function payloadSend(payload) {
   return create({
-    path: '/node-rpc',
+    path: '/api/node',
     onStart: LOAD_REQUESTED,
     onSuccess: LOAD_RESOLVED,
     onError: LOAD_REJECTED,
