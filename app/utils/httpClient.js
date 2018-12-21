@@ -29,15 +29,13 @@ export function update({ resource, id, payload }) {
   });
 }
 
-function request(path, options) {
-  const url = `${path}`;
-
+function request(resource, options) {
   const headers = {
     'Content-Type': 'application/json',
   };
 
   return axios({
-    url,
+    url: `/api${resource}`,
     headers,
     withCredentials: true,
     ...options,

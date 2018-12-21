@@ -104,7 +104,7 @@ class Browsables extends React.Component {
     return (
       <div key={groupName} className={classes.groupHeading} id={groupName}>
         <Typography paragraph className={classes.title}>
-          {groupName}
+          {groupName} <span className={classes.command}>commands</span>
         </Typography>
         {actions.map(this.renderAction)}
       </div>

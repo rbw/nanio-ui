@@ -56,8 +56,20 @@ export const styles = theme => ({
   nested: {
     fontSize: 14,
     width: 'calc(100% - 2px)',
-    boxShadow: '0px 0px 1px 0px #444444',
+  },
+  indentLevel2: {
+    paddingLeft: theme.spacing.unit * 3,
     backgroundColor: '#2b2b2b',
+    '&:hover': {
+      backgroundColor: '#282828',
+    },
+  },
+  indentLevel3: {
+    paddingLeft: theme.spacing.unit * 3.5,
+    backgroundColor: '#252525',
+    '&:hover': {
+      backgroundColor: '#2a2a2a',
+    },
   },
   navLink: {
     textDecoration: 'none',

@@ -11,6 +11,10 @@ export const styles = theme => ({
     borderBottomStyle: 'dashed',
     borderBottomColor: '#c1bfb5',
   },
+  command: {
+    fontSize: 14,
+    color: '#9e9c90',
+  },
   groupHeading: {
     marginBottom: 20,
     padding: 2,

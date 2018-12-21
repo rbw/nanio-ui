@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classnames from 'classnames';
 import { HashLink } from 'react-router-hash-link';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -27,7 +28,7 @@ class Sidebar extends React.Component {
     super(props);
 
     this.state = {
-      expanded: ['root_browser'],
+      expanded: ['100', '200'],
     };
   }
 
@@ -39,11 +40,19 @@ class Sidebar extends React.Component {
 
   renderItemText = (item, onClick = null) => {
     const { classes } = this.props;
+    const level = Number(item.id.charAt(0));
+    const indentClass = `indentLevel${level}`;
 
     return (
-      <ListItem button className={classes.listItem} onClick={onClick} key={item.id}>
+      <ListItem
+        button
+        className={classnames(classes.listItem, classes[indentClass])}
+        onClick={onClick}
+        key={item.id}
+      >
         {this.renderIcon(item.icon)}
         <ListItemText
+          id={item.id}
           primary={item.label}
           disableTypography
           className={classes.itemText}
@@ -95,19 +104,7 @@ class Sidebar extends React.Component {
 
     return (
       <div key={item.id}>
-        <ListItem
-          button
-          onClick={this.toggleExpanded}
-          className={classes.listItem}
-        >
-          {this.renderIcon(item.icon)}
-          <ListItemText
-            id={item.id}
-            primary={item.label}
-            disableTypography
-            className={classes.itemText}
-          />
-        </ListItem>
+        {this.renderItemText(item, this.toggleExpanded)}
         <Collapse
           timeout="auto"
           in={expanded.includes(item.id)}
@@ -120,28 +117,43 @@ class Sidebar extends React.Component {
     );
   };
 
-  renderItem = item =>
-    item.items ? this.renderBranch(item) : this.renderLeaf(item);
+  renderItem = item => {
+    return item.items ? this.renderBranch(item) : this.renderLeaf(item);
+  };
 
   render() {
     const { classes, rpcItems } = this.props;
 
-    const rpcMenuItems = rpcItems.map(group => ({
-      id: `rpc_${group}`,
+    const rpcMenuItems = rpcItems.map((group, idx) => ({
+      id: String(300 + idx),
       label: group.toLowerCase(),
       link: `/browser#${group}`,
     }));
 
     const sidebar = [
       {
-        id: 'root_browser',
+        id: '100',
         label: 'explore',
         link: '/browser',
         icon: 'terrain',
-        items: rpcMenuItems,
+        items: [
+          {
+            id: '200',
+            label: 'node',
+            link: '/browser',
+            icon: 'device_hub',
+            items: rpcMenuItems,
+          },
+          {
+            id: '201',
+            label: 'plugins',
+            link: '/browser',
+            icon: 'layers',
+          },
+        ],
       },
       {
-        id: 'root_settings',
+        id: '101',
         label: 'configure',
         modal: 'settings',
         dialog: 'settings',
@@ -155,7 +167,7 @@ class Sidebar extends React.Component {
         subheader={
           <ListSubheader component="div" className={classes.title}>
             <span>NANIO</span>
-            <span className={classes.version}> v16.1.0</span>
+            <span className={classes.version}> v1.1.3</span>
           </ListSubheader>
         }
         className={classes.root}
