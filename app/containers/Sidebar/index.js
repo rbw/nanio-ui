@@ -157,7 +157,7 @@ class Sidebar extends React.Component {
         label: 'configure',
         modal: 'settings',
         dialog: 'settings',
-        icon: 'style',
+        icon: 'settings',
       },
     ];
 

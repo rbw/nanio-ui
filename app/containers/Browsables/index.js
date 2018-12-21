@@ -8,7 +8,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import AttributesIcon from '@material-ui/icons/Notes';
+import AccessIcon from '@material-ui/icons/Notes';
 import { createStructuredSelector } from 'reselect';
 import { requestSet } from 'containers/RPCRequest/actions';
 import { schemasSelector } from './selectors';
@@ -48,7 +48,7 @@ class Browsables extends React.Component {
         <FieldsTable fields={action.fields} />
         <div className={classes.expansionFooter}>
           <span style={{ float: 'left' }}>
-            <AttributesIcon style={{ paddingBottom: 2, paddingRight: 3 }} />
+            <AccessIcon className={classes.accessIcon} />
             <span>
               {action.enabled ? 'enabled' : 'disabled'}
               {`, `}

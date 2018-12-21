@@ -38,7 +38,6 @@ export const styles = theme => ({
   },
   bodyDescription: {
     fontSize: 14,
-    // fontStyle: 'italic',
     color: '#4f4e48',
     paddingBottom: 10,
   },
@@ -47,7 +46,11 @@ export const styles = theme => ({
     fontSize: 16,
     textAlign: 'right',
     padding: '15px 2px 0px 0px',
-    color: '#484848',
+    color: '#656565',
+  },
+  accessIcon: {
+    paddingBottom: 3,
+    paddingRight: 3,
   },
   exampleLink: {
     padding: 0,
