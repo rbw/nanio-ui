@@ -145,7 +145,7 @@ class Sidebar extends React.Component {
           },
           {
             id: '201',
-            label: 'plugins',
+            label: 'extensions',
             link: '/browser',
             icon: 'layers',
           },

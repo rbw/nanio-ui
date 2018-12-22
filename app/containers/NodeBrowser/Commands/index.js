@@ -39,6 +39,7 @@ class Browsables extends React.Component {
   renderDetails = command => {
     const { classes, setRequest } = this.props;
     const { examples } = command;
+    const status = command.enabled ? command.access : 'command disabled';
 
     return (
       <ExpansionPanelDetails className={classes.itemDetails}>
@@ -49,11 +50,7 @@ class Browsables extends React.Component {
         <div className={classes.expansionFooter}>
           <span style={{ float: 'left' }}>
             <AccessIcon className={classes.accessIcon} />
-            <span>
-              {command.enabled ? 'enabled' : 'disabled'}
-              {`, `}
-              {command.protected ? 'protected' : 'public'}
-            </span>
+            <span>{status}</span>
           </span>
           <span>
             <span
