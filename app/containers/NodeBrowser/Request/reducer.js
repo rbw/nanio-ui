@@ -14,7 +14,7 @@ export const initialState = fromJS({
     begin: 0,
     end: 0,
   },
-  action: undefined,
+  command: undefined,
   protected: undefined,
   payload: { action: 'version' },
 });
@@ -27,7 +27,7 @@ function rpcReducer(state = initialState, action) {
     case REQUEST_SET:
       return state
         .set('payload', fromJS(action.payload))
-        .set('action', fromJS(action.action));
+        .set('action', fromJS(action.command));
     case LOAD_REQUESTED:
       return initialState
         .set('loading', true)

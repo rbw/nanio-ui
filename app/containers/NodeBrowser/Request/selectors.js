@@ -10,8 +10,8 @@ const responseSelector = () =>
     (result, time) => ({ result, elapsed: time.get('end') - time.get('begin') })
   );
 
-const actionSelector = () =>
-  createSelector(selectRPC, rpcState => rpcState.get('action'));
+const commandSelector = () =>
+  createSelector(selectRPC, rpcState => rpcState.get('command'));
 
 const payloadSelector = () =>
   createSelector(selectRPC, rpcState => rpcState.get('payload'));
@@ -22,4 +22,4 @@ const loadingSelector = () =>
 const errorSelector = () =>
   createSelector(selectRPC, rpcState => rpcState.get('error'));
 
-export { selectRPC, responseSelector, actionSelector, payloadSelector, loadingSelector, errorSelector };
+export { selectRPC, responseSelector, commandSelector, payloadSelector, loadingSelector, errorSelector };

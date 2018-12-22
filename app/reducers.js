@@ -7,7 +7,7 @@ import { connectRouter } from 'connected-react-router/immutable';
 
 import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
-import rpcReducer from 'containers/RPCRequest/reducer';
+import rpcReducer from 'containers/NodeBrowser/Request/reducer';
 import modalReducer from 'containers/Modal/reducer';
 
 /**

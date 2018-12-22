@@ -117,9 +117,8 @@ class Sidebar extends React.Component {
     );
   };
 
-  renderItem = item => {
-    return item.items ? this.renderBranch(item) : this.renderLeaf(item);
-  };
+  renderItem = item =>
+    item.items ? this.renderBranch(item) : this.renderLeaf(item);
 
   render() {
     const { classes, rpcItems } = this.props;

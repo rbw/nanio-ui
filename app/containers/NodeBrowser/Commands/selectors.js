@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { selectGlobal } from 'containers/App/selectors';
+import { selectGlobal } from '../../App/selectors';
 
 const schemasSelector = () =>
   createSelector(selectGlobal, globalState => globalState.get('schemas'));

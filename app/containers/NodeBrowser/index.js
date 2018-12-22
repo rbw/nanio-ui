@@ -6,11 +6,11 @@ import { withStyles } from '@material-ui/core/styles';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import Grid from '@material-ui/core/Grid';
-import Browsables from 'containers/Browsables';
-import RPCRequest from 'containers/RPCRequest';
-import RPCResponse from 'containers/RPCResponse';
 
-import { styles } from './styles';
+import RPCResponse from './Response';
+import Browsables from './Commands';
+import RPCRequest from './Request';
+import styles from './styles';
 
 export class Browser extends React.PureComponent {
   render() {

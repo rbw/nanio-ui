@@ -1,4 +1,4 @@
-export const styles = theme => ({
+const styles = theme => ({
   root: {
     padding: 0,
     height: '100%',
@@ -28,3 +28,5 @@ export const styles = theme => ({
     borderStyle: 'solid',
   },
 });
+
+export default styles;

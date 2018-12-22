@@ -10,11 +10,11 @@ import ReactJson from 'react-json-view';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import {
-  actionSelector,
+  commandSelector,
   responseSelector,
   errorSelector,
   loadingSelector,
-} from 'containers/RPCRequest/selectors';
+} from '../Request/selectors';
 
 import { styles } from './styles';
 
@@ -123,7 +123,7 @@ RPCResponse.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   loading: loadingSelector(),
-  action: actionSelector(),
+  action: commandSelector(),
   error: errorSelector(),
   response: responseSelector(),
 });

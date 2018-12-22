@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AccessIcon from '@material-ui/icons/Notes';
 import { createStructuredSelector } from 'reselect';
-import { requestSet } from 'containers/RPCRequest/actions';
+import { requestSet } from '../Request/actions';
 import { schemasSelector } from './selectors';
 import { styles } from './styles';
 import FieldsTable from './fields';
@@ -36,29 +36,29 @@ class Browsables extends React.Component {
     });
   };
 
-  renderDetails = action => {
+  renderDetails = command => {
     const { classes, setRequest } = this.props;
-    const { examples } = action;
+    const { examples } = command;
 
     return (
       <ExpansionPanelDetails className={classes.itemDetails}>
         <Typography className={classes.bodyDescription}>
-          {action.description}
+          {command.description}
         </Typography>
-        <FieldsTable fields={action.fields} />
+        <FieldsTable fields={command.fields} />
         <div className={classes.expansionFooter}>
           <span style={{ float: 'left' }}>
             <AccessIcon className={classes.accessIcon} />
             <span>
-              {action.enabled ? 'enabled' : 'disabled'}
+              {command.enabled ? 'enabled' : 'disabled'}
               {`, `}
-              {action.protected ? 'protected' : 'public'}
+              {command.protected ? 'protected' : 'public'}
             </span>
           </span>
           <span>
             <span
               onClick={() =>
-                setRequest(action.action, examples.request, action.protected)
+                setRequest(command.action, examples.request, command.protected)
               }
               className={classes.exampleLink}
             >
@@ -70,43 +70,43 @@ class Browsables extends React.Component {
     );
   };
 
-  renderAction = action => {
+  renderAction = command => {
     const { classes } = this.props;
 
     return (
       <ExpansionPanel
-        key={action.name}
-        expanded={this.state.expanded === action.name}
-        onChange={this.handleChange(action.name)}
+        key={command.name}
+        expanded={this.state.expanded === command.name}
+        onChange={this.handleChange(command.name)}
       >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           onClick={() =>
-            this.clickPanel(action.action, action.fields, action.protected)
+            this.clickPanel(command.action, command.fields, command.protected)
           }
         >
           <Typography className={classes.itemLeftHeading}>
-            {action.name}
+            {command.name}
           </Typography>
           <Typography className={classes.itemRightHeading} noWrap>
-            {action.description}
+            {command.description}
           </Typography>
         </ExpansionPanelSummary>
-        {this.renderDetails(action)}
+        {this.renderDetails(command)}
       </ExpansionPanel>
     );
   };
 
-  renderActionGroup = ([groupName, _actions]) => {
+  renderActionGroup = ([groupName, _commands]) => {
     const { classes } = this.props;
-    const actions = _actions.toJS();
+    const commands = _commands.toJS();
 
     return (
       <div key={groupName} className={classes.groupHeading} id={groupName}>
         <Typography paragraph className={classes.title}>
           {groupName} <span className={classes.command}>commands</span>
         </Typography>
-        {actions.map(this.renderAction)}
+        {commands.map(this.renderAction)}
       </div>
     );
   };

@@ -1,4 +1,4 @@
-import { create } from 'containers/Backend/actions';
+import { create } from '../../Backend/actions';
 import {
   REQUEST_SET,
   LOAD_REQUESTED,
